@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#7D9C65">
+    <meta name="description" content="منوی ایتالیایی اولیو؛ پیتزای تازه و طعم‌های ساده و اصیل.">
+    <title>اولیو | آشپزخانه ایتالیایی</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="pb-24">
+<div class="menu-shell">
+    <header class="hero">
+        <nav class="topbar" aria-label="اطلاعات رستوران"><a class="brand" href="./" aria-label="اولیو"><span
+                class="brand-name" lang="en">olio<span>✳</span></span><span>آشپزخانه ایتالیایی</span></a>
+
+<!-- we don't need two info buttons-->
+
+<!--            <button type="button" class="welcome underline underline-offset-4" id="restaurant-info">دربارهٔ اولیو ↗-->
+<!--            </button>-->
+
+            <button class="icon-button" id="favourites" aria-label="نمایش علاقه‌مندی‌ها" aria-pressed="false">♡<span
+                    id="fav-count">۰</span></button>
+        </nav>
+        <div class="hero-content">
+            <div class="eyebrow" lang="en">A LITTLE TASTE OF ITALY</div>
+            <h1>یک برش از <em>ایتالیا</em></h1>
+            <p>خمیر تازه، عطر ریحان، طعمی که می‌مونه.</p><span class="handwritten" lang="en">fatto con amore ♡</span>
+        </div>
+        <div class="hero-mark" aria-hidden="true">✳</div>
+    </header>
+    <main>
+        <form class="search" role="search">
+            <button type="submit" class="search-submit" aria-label="اجرای جست‌وجو">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                    <circle cx="10.5" cy="10.5" r="6.5"/>
+                    <path d="m16 16 5 5"/>
+                </svg>
+            </button>
+            <label class="sr-only" for="search">جست‌وجو در منو</label><input id="search"
+                                                                             placeholder="امروز هوس چی کردی؟"
+                                                                             autocomplete="off" enterkeyhint="search">
+        </form>
+        <div class="categories" aria-label="دسته‌های منو">
+            <button type="button" class="category active" data-category="pizza" aria-pressed="true"><span
+                    class="category-art">🍕</span><span>پیتزا</span><small lang="en">PIZZA</small></button>
+            <button type="button" class="category" data-category="pasta" aria-pressed="false"><span
+                    class="category-art">🍝</span><span>پاستا</span><small lang="en">PASTA</small></button>
+            <button type="button" class="category" data-category="starter" aria-pressed="false"><span
+                    class="category-art">🥗</span><span>پیش‌غذا</span><small lang="en">ANTIPASTI</small></button>
+            <button type="button" class="category" data-category="drink" aria-pressed="false"><span
+                    class="category-art">🍹</span><span>نوشیدنی</span><small lang="en">BEVANDE</small></button>
+        </div>
+        <div class="filter-toolbar" aria-label="فیلترهای محصولات">
+            <div class="filter-options">
+                <span class="filter-caption"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                  stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle
+                        cx="9" cy="7" r="2.5" fill="var(--paper)"/><circle cx="15" cy="17" r="2.5" fill="var(--paper)"/></svg> انتخاب شما</span>
+                <label class="filter-toggle"><input id="available-only" aria-label="فقط موجودها" type="checkbox"
+                                                    class="sr-only"><span class="toggle-dot" aria-hidden="true">✓</span>فقط
+                    موجودها</label>
+                <label class="filter-toggle"><input id="vegetarian-only" aria-label="گیاهی" type="checkbox"
+                                                    class="sr-only"><span aria-hidden="true">♧</span>گیاهی<span
+                        class="toggle-tick" aria-hidden="true">✓</span></label>
+            </div>
+            <div class="filter-sort">
+                <label class="sr-only" for="sort">مرتب‌سازی</label>
+                <span class="sort-symbol" aria-hidden="true">↕</span><select id="sort">
+                <option value="default">پیشنهاد اولیو</option>
+                <option value="price-asc">ارزان‌ترین</option>
+                <option value="price-desc">گران‌ترین</option>
+            </select>
+                <button type="button" id="reset-filters" class="filter-reset" aria-label="پاک‌کردن فیلترها"
+                        title="پاک‌کردن فیلترها">↺
+                </button>
+            </div>
+        </div>
+        <section aria-labelledby="section-title">
+            <div class="section-heading">
+                <div><span class="eyebrow red" lang="en">FRESH FROM THE OVEN</span>
+                    <h2 id="section-title">پیتزاهای اولیو </h2></div>
+                <span id="result-count" aria-live="polite">۴ انتخاب خوشمزه</span></div>
+            <div id="products" class="products"></div>
+            <p id="empty" hidden>پیتزایی پیدا نشد. یک اسم دیگه رو امتحان کن.</p></section>
+        <div class="kitchen-note"><span aria-hidden="true">✳</span>
+            <p>خوبیِ طعم، از سادگی میاد.<small>خمیر روزانه، مواد اولیه تازه و کمی عشق ایتالیایی.</small></p><span
+                    lang="en">Buon appetito!</span></div>
+        <section class="mb-8 overflow-hidden rounded-2xl border border-ink/10 bg-paper" aria-labelledby="about-heading">
+            <div class="grid items-center md:grid-cols-2"><img src="assets/restaurant.jpg"
+                                                               alt="فضای گرم یک رستوران ایتالیایی؛ تصویر نمونه"
+                                                               class="h-52 w-full object-cover" loading="lazy"
+                                                               width="800" height="500">
+                <div class="p-6"><span class="eyebrow red" lang="en">BENVENUTI DA OLIO</span>
+                    <h2 id="about-heading">به اولیو خوش اومدی</h2>
+                    <p class="mt-3 text-sm leading-7 text-ink/75">یک آشپزخانهٔ کوچک با طعم‌های ایتالیایی؛ خمیر تازه و
+                        غذاهایی که با حوصله آماده می‌شن.</p>
+                    <button id="about-more" type="button"
+                            class="mt-4 text-sm font-bold text-wine underline underline-offset-4">اطلاعات رستوران و تماس
+                        ↗
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer><span lang="en">olio · cucina italiana</span><span>با عشق، از آشپزخانهٔ ما به میز شما</span><span>نمونهٔ نمایشی منو</span>
+    </footer>
+</div>
+<button id="cart-open" type="button"
+        class="cart-launch fixed bottom-5 left-1/2 z-30 flex w-[calc(100%-40px)] max-w-md -translate-x-1/2 items-center justify-between rounded-2xl bg-ink px-5 py-4 text-paper shadow-xl"
+        aria-haspopup="dialog"><span>سبد خرید <span id="cart-count"
+                                                    class="mr-2 rounded-full bg-olive px-2 py-1 text-xs">۰</span></span><span
+        id="cart-total" class="text-sm">۰ تومان</span><span aria-hidden="true">←</span></button>
+<dialog id="product-dialog" class="modal" aria-labelledby="product-title">
+    <div class="dialog-inner">
+        <button class="dialog-close" type="button" data-close aria-label="بستن جزئیات">×</button>
+        <div id="product-details"></div>
+    </div>
+</dialog>
+<dialog id="cart-dialog" class="modal" aria-labelledby="cart-title">
+    <div class="dialog-inner">
+        <div class="flex items-center justify-between border-b border-ink/10 pb-4"><h2 id="cart-title" class="!m-0">سبد
+            خرید شما</h2>
+            <button class="close-inline" type="button" data-close aria-label="بستن سبد خرید">×</button>
+        </div>
+        <div id="cart-items" class="divide-y divide-ink/10"></div>
+        <div id="order-summary"></div>
+    </div>
+</dialog>
+<dialog id="info-dialog" class="modal" aria-labelledby="info-title">
+    <div class="dialog-inner">
+        <button class="dialog-close" type="button" data-close aria-label="بستن اطلاعات">×</button>
+        <span class="brand-name" lang="en">olio<span>✳</span></span>
+        <h2 id="info-title">آشپزخانهٔ ایتالیایی اولیو</h2><img src="assets/restaurant.jpg"
+                                                               alt="تصویر نمونهٔ فضای رستوران"
+                                                               class="my-5 h-48 w-full rounded-2xl object-cover"
+                                                               width="800" height="500">
+        <p class="rounded-xl bg-cream p-3 text-sm leading-7">این رستوران و اطلاعات زیر نمونه‌اند؛ پیش از استفاده با
+            اطلاعات واقعی جایگزین شوند.</p>
+        <dl class="mt-5 grid gap-4 text-sm">
+            <div>
+                <dt class="font-bold">آدرس</dt>
+                <dd class="mt-1 text-ink/70">تهران، خیابان نمونه، پلاک ۱۲ (آدرس نمایشی)</dd>
+            </div>
+            <div>
+                <dt class="font-bold">تلفن</dt>
+                <dd class="mt-1" dir="ltr">021-XXXX-XXXX</dd>
+            </div>
+            <div>
+                <dt class="font-bold">ایمیل</dt>
+                <dd class="mt-1" dir="ltr">hello@olio.example</dd>
+            </div>
+            <div>
+                <dt class="font-bold">ساعت کاری نمونه</dt>
+                <dd class="mt-1 text-ink/70">هر روز، ۱۲ تا ۲۳</dd>
+            </div>
+        </dl>
+    </div>
+</dialog>
+<p id="toast" role="status" class="toast" hidden></p>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
